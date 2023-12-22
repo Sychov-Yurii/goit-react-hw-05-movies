@@ -27,3 +27,46 @@ code {
 .active {
   color: red;
 }
+
+.img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Сброс стилей для списка */
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Стили для заголовков h1 */
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Стили для абзацев */
+p {
+  margin-bottom: 1rem;
+}
+
+.container {
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 15px auto 0;
+  padding-bottom: 40px;
+  padding-top: 40px;
+  width: 400px;
+}
+
+.header {
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 const MoviesList = () => {
   return (
-    <header>
+    <header className="header">
       <nav>
         <ul>
           <li>

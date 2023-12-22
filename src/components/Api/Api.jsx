@@ -15,6 +15,7 @@ const getTrendingMovies = async () => {
   }
 };
 
+// search
 const searchMovies = async query => {
   try {
     const response = await axios.get(

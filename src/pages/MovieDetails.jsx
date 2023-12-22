@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getMovieDetails } from '../components/Api/Api';
+// import { useSearchParams } from 'react-router-dom';
 
 const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState(null);
   console.log('movieDetails', movieDetails);
   const { movieId } = useParams();
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -25,8 +29,14 @@ const MovieDetails = () => {
     return <p>Loading...</p>;
   }
   const genres = movieDetails.genres.map(genre => genre.name).join(', ');
+  // const [searchParams, setSearchParams] = useSearchParams()
+
+  const handleBack = () => {
+    navigate(location.state ? '/movies' : '/', { state: '' });
+  };
   return (
     <div>
+      <button onClick={handleBack}>back</button>
       <h1>{movieDetails.title}</h1>
       <p>Overview: {movieDetails.overview}</p>
       <p>Genres: {genres}</p> {}
@@ -34,7 +44,6 @@ const MovieDetails = () => {
         src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
         alt=""
       />
-      {/* постер не работает */}
     </div>
   );
 };
