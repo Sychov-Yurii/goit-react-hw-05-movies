@@ -5,12 +5,12 @@ import { getMovieDetails } from '../components/Api/Api';
 const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState(null);
   console.log('movieDetails', movieDetails);
-  const { id } = useParams();
+  const { movieId } = useParams();
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
-        const movieData = await getMovieDetails(id); // о фильме
+        const movieData = await getMovieDetails(movieId); // о фильме
         setMovieDetails(movieData);
       } catch (error) {
         console.error('Error fetching movie details:', error);
@@ -19,7 +19,7 @@ const MovieDetails = () => {
     };
 
     fetchMovieDetails();
-  }, [id]);
+  }, [movieId]);
 
   if (!movieDetails) {
     return <p>Loading...</p>;
@@ -31,7 +31,7 @@ const MovieDetails = () => {
       <p>Overview: {movieDetails.overview}</p>
       <p>Genres: {genres}</p> {}
       <img
-        src={`https://api.themoviedb.org/3/${movieDetails.poster_path}`}
+        src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
         alt=""
       />
       {/* постер не работает */}

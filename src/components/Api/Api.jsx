@@ -39,4 +39,36 @@ const getMovieDetails = async movieId => {
   }
 };
 
-export { getTrendingMovies, searchMovies, getMovieDetails };
+// актерский состав
+const getMovieCredits = async movieId => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching movie credits:', error);
+    return null;
+  }
+};
+
+// ревью
+const getMovieReviews = async movieId => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/movie/${movieId}/reviews?api_key=${API_KEY}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching movie reviews:', error);
+    return null;
+  }
+};
+
+export {
+  getTrendingMovies,
+  searchMovies,
+  getMovieDetails,
+  getMovieCredits,
+  getMovieReviews,
+};
