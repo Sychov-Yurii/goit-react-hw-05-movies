@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams, Link } from 'react-router-dom';
 import { getMovieDetails } from '../components/Api/Api';
+import Cast from './Cast';
+import Reviews from './Reviews';
 // import { useSearchParams } from 'react-router-dom';
 
 const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState(null);
-  console.log('movieDetails', movieDetails);
+  // console.log('movieDetails', movieDetails);
   const { movieId } = useParams();
 
   const location = useLocation();
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,15 +31,22 @@ const MovieDetails = () => {
   if (!movieDetails) {
     return <p>Loading...</p>;
   }
+
   const genres = movieDetails.genres.map(genre => genre.name).join(', ');
   // const [searchParams, setSearchParams] = useSearchParams()
 
   const handleBack = () => {
-    navigate(location.state ? '/movies' : '/', { state: '' });
+    navigate('/movies'); // Программный переход на страницу /movies
   };
+
+  // const goBackLink = location?.state?.from ?? '/';
+  console.log('location :>> ', location);
+
   return (
     <div>
-      <button onClick={handleBack}>back</button>
+      <Link to={location?.state?.from || '/movies'}>
+        <button onClick={handleBack}>Go back</button>
+      </Link>
       <h1>{movieDetails.title}</h1>
       <p>Overview: {movieDetails.overview}</p>
       <p>Genres: {genres}</p> {}
@@ -44,6 +54,9 @@ const MovieDetails = () => {
         src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
         alt=""
       />
+      <p>Additional information</p>
+      <Link to={`${url}/cast`}>Cast</Link>
+      <Reviews />
     </div>
   );
 };
