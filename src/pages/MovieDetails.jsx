@@ -55,7 +55,6 @@ const MovieDetails = () => {
         alt=""
       />
       <p>Additional information</p>
-      <Link to={`${url}/cast`}>Cast</Link>
       <Reviews />
     </div>
   );
